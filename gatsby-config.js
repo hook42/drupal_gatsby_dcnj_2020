@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby + Drupal 8`,
     slogan: `A Match Made in Heaven`,
-    description: `A demo site made in our Gatsby + Drupal training session at BADCamp 2019!`,
-    author: `@porkloin`,
+    description: `A demo site made in our Gatsby + Drupal training session at DrupalCamp NJ 2020!`,
+    author: `@benjifisher`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -34,7 +34,7 @@ module.exports = {
         baseUrl: `https://stm5d95917bef2e4-l6po7xb9wogqpizeor0rmtsio9o6wfcc.tugboat.qa/`, // optional: use your simplytest url here
         apiBase: `jsonapi`, // optional, defaults to `jsonapi`
       },
-    },*/    
+    },*/
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
