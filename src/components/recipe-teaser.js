@@ -13,4 +13,3 @@ const RecipeTeaser = ({recipeTitle, recipeDate, recipeSummary, recipeImg}) => (
 )
 
 export default RecipeTeaser
-
