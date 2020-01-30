@@ -1,30 +1,30 @@
 import React from "react"
-import {graphql} from "gatsby"
+import { graphql } from "gatsby"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import RecipeTeaser from "../components/recipe-teaser.js"
+import RecipeTeaser from "../components/recipe-teaser"
 
 const RecipeListingPage = ({data}) => (
   <Layout>
     <SEO title="Recipes" />
     <h1>Recipes</h1>
     { data.allNodeRecipe.edges.map((recipe) => (
-    <RecipeTeaser
+      <RecipeTeaser
         key={recipe.node.id}
         recipeDate={recipe.node.created}
         recipeTitle={recipe.node.title}
         recipeSummary={recipe.node.field_summary.value}
-        recipeImg={recipe.node.relationships.field_image.localFile.childImageSharp.fixed}
+        recipeImg={recipe.node.relationships.field_media_image.relationships.field_media_image.localFile.childImageSharp.fixed}
         recipeSlug={recipe.node.fields.slug}
-    />
+      />
     ) )}
   </Layout>
 )
 
 export const query = graphql`
- query RecipeQuery {
+  query RecipeQuery {
     allNodeRecipe {
       edges {
         node {
@@ -33,18 +33,22 @@ export const query = graphql`
           fields {
             slug
           }
-          created(formatString: "MMMM, Do, YYYY")
+          created(formatString: "MMMM Do, YYYY")
           field_summary {
             value
             format
             processed
           }
           relationships {
-            field_image {
-              localFile {
-                childImageSharp {
-                  fixed(width: 125, height: 125) {
-                    ...GatsbyImageSharpFixed
+            field_media_image {
+              relationships {
+                field_media_image {
+                  localFile {
+                    childImageSharp {
+                      fixed(width: 125, height: 125) {
+                        ...GatsbyImageSharpFixed
+                      }
+                    }
                   }
                 }
               }
@@ -55,5 +59,4 @@ export const query = graphql`
     }
   }
 `
-
 export default RecipeListingPage
