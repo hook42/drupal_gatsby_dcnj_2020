@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import RecipeTeaser from "../components/recipe-teaser.js"
+import RecipeTeaser from "../components/recipe-teaser"
 
 const RecipeListingPage = ({data}) => (
   <Layout>
@@ -16,7 +16,7 @@ const RecipeListingPage = ({data}) => (
         recipeDate={recipe.node.created}
         recipeTitle={recipe.node.title}
         recipeSummary={recipe.node.field_summary.value}
-        recipeImg={recipe.node.relationships.field_image.localFile.childImageSharp.fixed}
+        recipeImg={recipe.node.relationships.field_media_image.relationships.field_media_image.localFile.childImageSharp.fixed}
         recipeSlug={recipe.node.fields.slug}
     />
     ) )}
@@ -40,11 +40,15 @@ export const query = graphql`
             processed
           }
           relationships {
-            field_image {
-              localFile {
-                childImageSharp {
-                  fixed(width: 125, height: 125) {
-                    ...GatsbyImageSharpFixed
+            field_media_image {
+              relationships{
+                field_media_image {
+                  localFile {
+                    childImageSharp {
+                      fixed(width: 125, height: 125) {
+                        ...GatsbyImageSharpFixed
+                      }
+                    }
                   }
                 }
               }

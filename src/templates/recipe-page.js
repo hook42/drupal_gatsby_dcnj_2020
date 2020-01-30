@@ -9,7 +9,7 @@ const RecipePage = ({data}) => (
     <div>
       <h1>{data.nodeRecipe.title}</h1>
       <i><p className="publication-date">{data.nodeRecipe.created}</p></i>
-      <Img fixed={data.nodeRecipe.relationships.field_image.localFile.childImageSharp.fixed} />
+      <Img fixed={data.nodeRecipe.relationships.field_media_image.relationships.field_media_image.localFile.childImageSharp.fixed} />
       <div class="details" style={{
           display: 'flex',
           flexDirection: 'column',
@@ -43,7 +43,9 @@ export const query = graphql`
         processed
       }
       relationships{
-            field_image {
+        field_media_image {
+          relationships{
+            field_media_image {
               localFile {
                 childImageSharp {
                   fixed(width: 500) {
@@ -53,6 +55,8 @@ export const query = graphql`
               }
             }
           }
+        }
+      }
     }
   }
 `
